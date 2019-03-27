@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class SearchList_item extends LinearLayout {
 
-    Button imageView1;
+    TextView imageView1;
     TextView hpname;
     TextView hpaddress;
     TextView hpadr2;
@@ -25,7 +25,7 @@ public class SearchList_item extends LinearLayout {
                 Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.activity_search_list_item, this, true);
 
-        imageView1 = (Button)findViewById(R.id.imageView1);
+        imageView1 = (TextView) findViewById(R.id.imageView1);
         hpname = (TextView) findViewById(R.id.hpname);
         hpadr2 = (TextView) findViewById(R.id.hpadr2);
         hpaddress = (TextView) findViewById(R.id.hpaddress);
