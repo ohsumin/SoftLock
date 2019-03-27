@@ -63,7 +63,7 @@ public class Home extends AppCompatActivity {
     //Logcat을 사용하기 위한 태그 설정
     private static final int REQUEST_CODE = 999;
 
-    String userPhone;//유심에서 전화번호 읽어와서 입력폼에 자동 입력시키기 위한  변수
+    String userPhone;//유심에서 전화번호 읽어와서 입력폼에 자동 입력시키기 위한 변수이다냥
 
 
     EditText etPhone;
