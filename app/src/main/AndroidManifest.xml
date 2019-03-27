@@ -60,7 +60,8 @@
         <activity android:name=".End_item" />
         <activity android:name=".Searchmap_item" />
         <activity android:name=".SearchList" />
-        <activity android:name=".SearchList_item"></activity>
+        <activity android:name=".SearchList_item" />
+        <activity android:name=".Hp_Info"></activity>
     </application>
 
 </manifest>
