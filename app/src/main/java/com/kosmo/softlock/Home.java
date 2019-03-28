@@ -175,17 +175,18 @@ public class Home extends AppCompatActivity {
 
                 new AsyncHttpRequest().execute(
                         // 아이디, 성별, 이메일, 생년월일, 전화번호
-                        "http://192.168.0.40:8080/client/Android/join"
+                        "http://192.168.0.40:8080/softlock/Android/join"
                         , "mem_id=" + id
                         , "mem_pw=" + "NAVERLOGIN!"
                         , "mem_name=" + name
-                        , "mem_phone=" + etPhonestr// 임시데이터
-                        , "mem_gender=" + gender // 임시데이터
+                        , "mem_phone=" + etPhonestr
+                        , "mem_gender=" + gender
                         , "mem_email=" + email
-                        , "mem_birth_year=" + yearstr// 임시데이터
-                        , "mem_birth_month=" + sp_month_str // 임시데이터
-                        , "mem_birth_day=" + sp_day_str // 임시데이터
+                        , "mem_birth_year=" + yearstr
+                        , "mem_birth_month=" + sp_month_str
+                        , "mem_birth_day=" + sp_day_str
                         , "mem_auth=" + "y"
+                        , "_csrf=" + "882aba20-17d0-4b74-b4a9-5771dba543d4"
                 );
             }
         });
@@ -299,9 +300,10 @@ public class Home extends AppCompatActivity {
                 // 위 참조변수로 URL연결
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 // 전송방식은 POST로 설정한다. (디폴트는 GET방식)
-                connection.setRequestMethod("POST");
+                //connection.setRequestMethod("");
                 // OutputStream으로 파라미터를 전달하겠다는 설정
                 connection.setDoOutput(true);
+                connection.setDoInput(true);
 
                 /*
                 요청 파라미터를 OutputStream으로 조립후 전달한다.
@@ -335,7 +337,13 @@ public class Home extends AppCompatActivity {
                 /*
                 getResponseCode()를 호출하면 서버로 요청이 전달된다.
                  */
+
+
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+
+                    Log.i("AsyncTask Class", "HTTP_OK 대씸");
+
+
                     // 서버로부터 응답이 온 경우
                     // 응답데이터를 StringBuffer변수에 저장한다.
                     BufferedReader reader = new BufferedReader(
@@ -348,7 +356,7 @@ public class Home extends AppCompatActivity {
                     reader.close();
                 } else {
                     // 서버로부터 응답이 없는경우
-                    Log.i("AsyncTask Class", "HTTP_OK 안됨");
+                    Log.i("AsyncTask Class", "HTTP_OK 안대씸");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -368,6 +376,7 @@ public class Home extends AppCompatActivity {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                     String isSuccess = jsonObject.getString("isSuccess").toString();
+                    Log.d("성공여부", isSuccess);
                     //Toast.makeText(getApplicationContext(), isSuccess, Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
@@ -387,7 +396,7 @@ public class Home extends AppCompatActivity {
             dialog.dismiss();
             // 서버의 응답데이터 파싱후 텍스트뷰에 출력
             //textResult.setText(s);
-            Toast.makeText(getApplicationContext(), "성공!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "성공!", Toast.LENGTH_LONG).show();
         }
     }
 
