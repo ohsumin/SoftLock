@@ -8,6 +8,6 @@ public class Hp_Info extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hp__info);
+        //setContentView(R.layout.activity_hp__info);
     }
 }

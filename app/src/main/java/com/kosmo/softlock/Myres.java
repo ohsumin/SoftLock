@@ -65,7 +65,7 @@ public class Myres extends Fragment {
 
          new Myres.AsyncHttpRequest().execute(
                 // 아이디, 성별, 이메일, 생년월일, 전화번호
-                "http://192.168.0.35:8080/client//Android/reservationlist"
+                "http://192.168.0.40:8080/client//Android/reservationlist"
                 , "resv_type=" + hp_type
                 , "hp_name=" + hp_name
                 , "resv_date=" + resv_date
