@@ -418,7 +418,7 @@ public class HpSearchMap extends AppCompatActivity  {
                 // 위 참조변수로 URL연결
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 // 전송방식은 POST로 설정한다. (디폴트는 GET방식)
-                connection.setRequestMethod("POST");
+                connection.setRequestMethod("GET");
                 // OutputStream으로 파라미터를 전달하겠다는 설정
                 connection.setDoOutput(true);
 
