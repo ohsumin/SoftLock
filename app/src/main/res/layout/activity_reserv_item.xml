@@ -17,18 +17,17 @@
             android:layout_weight="0.5"
             android:background="#ffffff"
             android:orientation="horizontal">
-            <Button
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/imageView2"
-                android:text="내과"/>
+                android:background="#fff428"
+                android:id="@+id/hp_type"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:id="@+id/endhpname"
-                android:text="병원이름"
+                android:id="@+id/hp_name"
                 android:textSize="17sp"/>
         </LinearLayout>
         <LinearLayout
@@ -49,9 +48,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:id="@+id/endreservtime"
-                android:text="2019/03/02    09:30"
+                android:gravity="center"
+                android:id="@+id/resv_date"
                 android:textSize="17sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:gravity="left"
+                android:id="@+id/resv_time"
+                android:textSize="17sp"/>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,12 +71,13 @@
                 android:layout_weight="2"
                 android:id="@+id/cancel_reserv"
                 android:text="예약취소"/>
-            <Button
+            <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="37dp"
                 android:layout_weight="2"
-                android:id="@+id/write"
-                android:text="예약대기"/>
+                android:gravity="center"
+                android:background="#fff428"
+                android:id="@+id/resv_perm"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

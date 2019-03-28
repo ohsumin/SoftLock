@@ -1,8 +1,10 @@
 package com.kosmo.softlock;
 
+import android.app.ProgressDialog;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MyReservation extends AppCompatActivity {
 
@@ -28,5 +30,7 @@ public class MyReservation extends AppCompatActivity {
 
 
         fth.setCurrentTab(0);
+
+
     }
 }
