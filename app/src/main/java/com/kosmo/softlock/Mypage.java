@@ -1,6 +1,7 @@
 package com.kosmo.softlock;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,5 +52,9 @@ public class Mypage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+
     }
 }
