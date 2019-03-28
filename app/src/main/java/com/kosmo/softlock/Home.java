@@ -128,7 +128,7 @@ public class Home extends AppCompatActivity {
 
 
         // 전화번호 가져오기
-        int permissionCheck = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE);
+        /*int permissionCheck = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {     // 권한설정 안되어 있으면 권한요청
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_PHONE_STATE}, 1);
         } else {    // 권한이 있으면
@@ -138,7 +138,7 @@ public class Home extends AppCompatActivity {
 
             etPhone.setText(userPhone);
             etPhone.setEnabled(false);
-        }
+        }*/
 
 
 

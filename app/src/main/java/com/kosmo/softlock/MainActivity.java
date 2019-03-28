@@ -33,9 +33,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private static OAuthLogin naverLoginInstance;
     Button btnGetApi, btnLogout;
     Button btn_login;
-    static final String CLIENT_ID = "eEwTZewdlIU4jjbFeZDz";
-    static final String CLIENT_SECRET = "puN4z2hZbq";
-    static final String CLIENT_NAME = "김민수";
+    static final String CLIENT_ID = "BzBQXoe0lFvJXPug54xl";
+    static final String CLIENT_SECRET = "pNCmumc1Nz";
+    static final String CLIENT_NAME = "임현주";
     // 회원 프로필정보
     String name = "";
     String email = "";
