@@ -47,12 +47,7 @@
         <activity android:name=".Home" />
         <activity android:name=".Mypage" />
         <activity android:name=".HpSearchMap" />
-        <activity android:name=".MyReservation" />
-        <activity android:name=".Reserv_item" />
-        <activity android:name=".End_item" />
-        <activity android:name=".Searchmap_item" />
-        <activity android:name=".SearchList" />
-        <activity android:name=".SearchList_item"></activity>
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBZwYHd7t7BQ5YjBs89DK-p-91v-TghY8g" />
@@ -60,7 +55,12 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-
+        <activity android:name=".MyReservation" />
+        <activity android:name=".Reserv_item" />
+        <activity android:name=".End_item" />
+        <activity android:name=".Searchmap_item" />
+        <activity android:name=".SearchList" />
+        <activity android:name=".SearchList_item"></activity>
     </application>
 
 </manifest>
