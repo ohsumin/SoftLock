@@ -26,14 +26,12 @@
                 android:layout_weight="0.6"
                 android:gravity="center"
                 android:background="#fff428"
-                android:id="@+id/imageView1"
-                android:text="내과"/>
+                android:id="@+id/hpType"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:id="@+id/hpname"
-                android:text="병원이름"
+                android:id="@+id/hpName"
                 android:textSize="17sp"/>
         </LinearLayout>
         <LinearLayout
@@ -45,26 +43,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="left"
-                android:id="@+id/hpaddress"
+                android:id="@+id/hpAddr"
                 android:layout_weight="1"
-                android:text="병원주소"
                 android:textSize="12sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:id="@+id/hpadr2"
-                android:text="상세주소"
+                android:id="@+id/hpAddr2"
                 android:textSize="12sp"/>
-            <RatingBar
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:id="@+id/hpPhone"
+                android:textSize="12sp"/>
+            <!--<RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="left"
                 android:id="@+id/star"
                 android:numStars="5"
                 android:layout_weight="1"
-                style="?android:attr/ratingBarStyleSmall"/>
+                style="?android:attr/ratingBarStyleSmall"/>-->
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

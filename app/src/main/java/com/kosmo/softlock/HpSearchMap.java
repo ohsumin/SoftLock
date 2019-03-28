@@ -3,6 +3,7 @@ package com.kosmo.softlock;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -465,19 +466,19 @@ public class HpSearchMap extends AppCompatActivity  {
             [{"pass":"1234","regidate":2018-11-20,"name":"오수민","id":"test1"}, ... ]
              */
             try {
-                JSONArray jsonArray = new JSONArray(sBuffer.toString());
+                //JSONArray jsonArray = new JSONArray(sBuffer.toString());
 
                 // sBuffer 초기화
-                sBuffer.setLength(0);
+                /*sBuffer.setLength(0);
 
                 Toast.makeText(getApplicationContext(), jsonArray.length(), Toast.LENGTH_LONG).show();
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    /*String hp_id = jsonObject.getString("hp_id");
-                    String hp_pw = jsonObject.getString("hp_pw");*/
+                    String hp_id = jsonObject.getString("hp_id");
+                    String hp_pw = jsonObject.getString("hp_pw");
                     String hp_name = jsonObject.getString("hp_name");
-                    /*String hp_num = jsonObject.getString("hp_num");
+                    String hp_num = jsonObject.getString("hp_num");
                     String hp_username = jsonObject.getString("hp_username");
                     String hp_email = jsonObject.getString("hp_email");
                     String hp_phone = jsonObject.getString("hp_phone");
@@ -491,10 +492,9 @@ public class HpSearchMap extends AppCompatActivity  {
                     String hp_regidate = jsonObject.getString("hp_regidate");
                     String hp_hpphone = jsonObject.getString("hp_hpphone");
                     String hp_address2 = jsonObject.getString("hp_address2");
-                    String hp_type = jsonObject.getString("hp_type");*/
+                    String hp_type = jsonObject.getString("hp_type");
 
-
-                }
+                }*/
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -510,9 +510,11 @@ public class HpSearchMap extends AppCompatActivity  {
             super.onPostExecute(s);
             // 진행대화창 닫기
             dialog.dismiss();
-            // 서버의 응답데이터 파싱후 텍스트뷰에 출력
-            //textResult.setText(s);
-            //Toast.makeText(getApplicationContext(), "성공!", Toast.LENGTH_LONG).show();
+
+            // sBuffer를 SearchList로 넘김
+            Intent intent = new Intent(getApplicationContext(), SearchList.class);
+            intent.putExtra("sBuffer", s);
+            startActivity(intent);
         }
     }
 }

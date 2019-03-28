@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 public class SearchList_item extends LinearLayout {
 
-    TextView imageView1;
-    TextView hpname;
-    TextView hpaddress;
-    TextView hpadr2;
-    RatingBar star;
-
+    TextView hpType;
+    TextView hpName;
+    TextView hpAddr;
+    TextView hpAddr2;
+    TextView hpPhone;
+    //RatingBar star;
 
     public SearchList_item(Context context){
         super(context);
@@ -25,31 +25,27 @@ public class SearchList_item extends LinearLayout {
                 Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.activity_search_list_item, this, true);
 
-        imageView1 = (TextView) findViewById(R.id.imageView1);
-        hpname = (TextView) findViewById(R.id.hpname);
-        hpadr2 = (TextView) findViewById(R.id.hpadr2);
-        hpaddress = (TextView) findViewById(R.id.hpaddress);
-        star = (RatingBar) findViewById(R.id.star);
+        hpType = (TextView) findViewById(R.id.hpType);
+        hpName = (TextView) findViewById(R.id.hpName);
+        hpAddr = (TextView) findViewById(R.id.hpAddr);
+        hpAddr2 = (TextView) findViewById(R.id.hpAddr2);
+        hpPhone = (TextView) findViewById(R.id.hpPhone);
+        //star = (RatingBar) findViewById(R.id.star);
     }
 
-    public void setImageView1(String text){
-        imageView1.setText(text);
+    public void setHpType(String text){
+        hpType.setText(text);
     }
-
-    public void setHpname(String text){
-        hpname.setText(text);
+    public void setHpName(String text){
+        hpName.setText(text);
     }
-
-    public void setHpaddress(String text){
-        hpaddress.setText(text);
+    public void setHpAddr(String text){
+        hpAddr.setText(text);
     }
-
-    public void setHpadr2(String text){
-        hpadr2.setText(text);
+    public void setHpAddr2(String text){
+        hpAddr2.setText(text);
     }
-
-    public void setStar(int starNum){
-        star.setRating(starNum);
+    public void setHpPhone(String text){
+        hpPhone.setText(text);
     }
-
 }

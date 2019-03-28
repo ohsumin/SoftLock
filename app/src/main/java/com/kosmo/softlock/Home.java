@@ -65,7 +65,6 @@ public class Home extends AppCompatActivity {
 
     String userPhone;//유심에서 전화번호 읽어와서 입력폼에 자동 입력시키기 위한 변수이다
 
-
     EditText etPhone;
     EditText year;
     Spinner sp_month;
