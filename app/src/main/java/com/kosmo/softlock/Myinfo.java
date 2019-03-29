@@ -64,7 +64,7 @@ public class Myinfo extends Fragment {
 
         new Myinfo.AsyncHttpRequest().execute(
                 // 아이디, 성별, 이메일, 생년월일, 전화번호
-                "http://192.168.0.40:8080/client//Android/reservationlist2"
+                "http://192.168.0.40:8080/client/Android/reservationlist2"
                 , "resv_type=" + hp_type
                 , "hp_name=" + hp_name
                 , "resv_date=" + resv_date

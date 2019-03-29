@@ -36,15 +36,16 @@ public class Myres extends Fragment {
     private Context context;
 
     ListView listView;
-    String[] hp_type;
+/*    String[] hp_type;
     String[] hp_name;
     TextView restime;
     String[] resv_date;
     String[] resv_time;
     Button cancel_reserv;
     String[] resv_perm;
-
+*/
     int count = 5;
+    String sBuffer = "";
 
     String[] hp_typeArr = new String[100];
     String[] hp_nameArr = new String[100];
@@ -52,7 +53,7 @@ public class Myres extends Fragment {
     String[] resv_timeArr = new String[100];
     String[] resv_permArr = new String[100];
 
-    ProgressDialog dialog;
+    //ProgressDialog dialog;
 
 
     @Override
@@ -63,23 +64,18 @@ public class Myres extends Fragment {
         context = container.getContext();
 
 
-         new Myres.AsyncHttpRequest().execute(
+        new AsyncHttpRequest().execute(
                 // 아이디, 성별, 이메일, 생년월일, 전화번호
-                "http://192.168.0.40:8080/client//Android/reservationlist"
-                , "resv_type=" + hp_type
-                , "hp_name=" + hp_name
-                , "resv_date=" + resv_date
-                , "resv_time=" + resv_time
-                , "resv_perm=" + resv_perm
+                "http://192.168.0.40:8080/softlock/Android/reservationlist"
         );
 
 
 
-        dialog = new ProgressDialog(v.getContext());
+       /* dialog = new ProgressDialog(v.getContext());
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setIcon(android.R.drawable.ic_dialog_alert);
         dialog.setTitle("회원님의 예약 정보를 불러오고 있습니다.");
-        dialog.setMessage("서버로부터 응답을 기다리고 있습니다.");
+        dialog.setMessage("서버로부터 응답을 기다리고 있습니다.");*/
 
         final MyAdapter adapter = new MyAdapter();
 
@@ -96,10 +92,11 @@ public class Myres extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            // 서버로 요청하는 시점에 프로그레스 대화창을 띄워준다.
+            /*// 서버로 요청하는 시점에 프로그레스 대화창을 띄워준다.
             if (!dialog.isShowing()) {
                 dialog.show();
-            }
+            }*/
+            Log.d("진입", "onPreExecute()");
         }
 
         // execute()가 호출되면 자동으로 호출되는 메소드(실제동작을 처리)
@@ -107,7 +104,7 @@ public class Myres extends Fragment {
         protected String doInBackground(String... params) {
             // execute()를 호출할때 전달한 3개의 파라미터를 가변인자로 전달받는다.
             // 함수 내부에서는 배열로 사용한다.
-
+            Log.d("진입", "doInBackground()");
             // 파라미터 확인용
             for (String s : params) {
                 Log.i("AsyncTask Class", "파라미터 : " + s);
@@ -134,14 +131,6 @@ public class Myres extends Fragment {
                  */
                 OutputStream out = connection.getOutputStream();
                 out.write(params[1].getBytes());
-                out.write("&".getBytes());
-                out.write(params[2].getBytes());
-                out.write("&".getBytes());
-                out.write(params[3].getBytes());
-                out.write("&".getBytes());
-                out.write(params[4].getBytes());
-                out.write("&".getBytes());
-                out.write(params[5].getBytes());
                 out.flush();
                 out.close();
 
@@ -150,6 +139,7 @@ public class Myres extends Fragment {
                  */
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     // 서버로부터 응답이 온 경우
+                    Log.i("AsyncTask Class", "HTTP_OK 대씸");
                     // 응답데이터를 StringBuffer변수에 저장한다.
                     BufferedReader reader = new BufferedReader(
                             new InputStreamReader(connection.getInputStream(), "UTF-8")
@@ -177,14 +167,15 @@ public class Myres extends Fragment {
                 // sBuffer 초기화
                 sBuffer.setLength(0);
                 count = jsonArray.length();
-                Toast.makeText(context, jsonArray.length(), Toast.LENGTH_LONG).show();
-
+                //Toast.makeText(get, jsonArray.length(), Toast.LENGTH_LONG).show();
+                Log.d("얍", "1");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    String hp_id = jsonObject.getString("hp_id");
-                    String hp_pw = jsonObject.getString("hp_pw");
+
+                    //String hp_id = jsonObject.getString("hp_id");
+                    //String hp_pw = jsonObject.getString("hp_pw");
                     String hp_name = jsonObject.getString("hp_name");
-                    String hp_num = jsonObject.getString("hp_num");
+                    /*String hp_num = jsonObject.getString("hp_num");
                     String hp_username = jsonObject.getString("hp_username");
                     String hp_email = jsonObject.getString("hp_email");
                     String hp_phone = jsonObject.getString("hp_phone");
@@ -197,7 +188,7 @@ public class Myres extends Fragment {
                     String hp_perm = jsonObject.getString("hp_perm");
                     String hp_regidate = jsonObject.getString("hp_regidate");
                     String hp_hpphone = jsonObject.getString("hp_hpphone");
-                    String hp_address2 = jsonObject.getString("hp_address2");
+                    String hp_address2 = jsonObject.getString("hp_address2");*/
                     String hp_type = jsonObject.getString("hp_type");
                     String resv_date = jsonObject.getString("resv_date");
                     String resv_time = jsonObject.getString("resv_time");
@@ -226,13 +217,14 @@ public class Myres extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            Log.d("진입", "onPostExecute()");
             // 진행대화창 닫기
-            dialog.dismiss();
+            //dialog.dismiss();
 
             // sBuffer를 SearchList로 넘김
-            /*Intent intent = new Intent(getApplicationContext(), SearchList.class);
-            intent.putExtra("sBuffer", s);
-            startActivity(intent);*/
+            //Intent intent = new Intent(getApplicationContext(), SearchList.class);
+            //Myres.putExtra("sBuffer", s);
+            //startActivity(intent);
         }
     }
 
@@ -258,9 +250,9 @@ public class Myres extends Fragment {
 
             view.setHpType(hp_typeArr[position]);
             view.setHpName(hp_nameArr[position]);
-            view.setResv_date(resv_date[position]);
-            view.setResv_time(resv_time[position]);
-            view.setResv_perm(resv_perm[position]);
+            view.setResv_date(resv_dateArr[position]);
+            view.setResv_time(resv_timeArr[position]);
+            view.setResv_perm(resv_permArr[position]);
 
             return view;
         }

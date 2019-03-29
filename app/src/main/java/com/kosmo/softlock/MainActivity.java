@@ -62,7 +62,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 //결과보기 액티비티로 투표결과를 넘겨주기위해 인텐트 생성
-                Intent intent = new Intent(v.getContext(),
+                Intent intent = new Intent(getApplicationContext(),
                         Mypage.class);
                 startActivity(intent);
             }

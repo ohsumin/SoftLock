@@ -186,7 +186,7 @@ public class Home extends AppCompatActivity {
                         , "mem_birth_month=" + sp_month_str
                         , "mem_birth_day=" + sp_day_str
                         , "mem_auth=" + "y"
-                        , "_csrf=" + "882aba20-17d0-4b74-b4a9-5771dba543d4"
+
                 );
             }
         });
@@ -283,6 +283,8 @@ public class Home extends AppCompatActivity {
         // execute()가 호출되면 자동으로 호출되는 메소드(실제동작을 처리)
         @Override
         protected String doInBackground(String... params) {
+
+            String mem_idx = "";
             // execute()를 호출할때 전달한 3개의 파라미터를 가변인자로 전달받는다.
             // 함수 내부에서는 배열로 사용한다.
 
@@ -300,6 +302,7 @@ public class Home extends AppCompatActivity {
                 // 위 참조변수로 URL연결
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 // 전송방식은 POST로 설정한다. (디폴트는 GET방식)
+                connection.setRequestMethod("POST");
                 //connection.setRequestMethod("");
                 // OutputStream으로 파라미터를 전달하겠다는 설정
                 connection.setDoOutput(true);
@@ -365,24 +368,26 @@ public class Home extends AppCompatActivity {
             // 눌러진 버튼이 로그인이면 파싱후 결과를 출력함
             /*
             [{"pass":"1234","regidate":2018-11-20,"name":"오수민","id":"test1"}, ... ]
+
              */
+
+
             try {
-                JSONArray jsonArray = new JSONArray(sBuffer.toString());
-
-                // sBuffer 초기화
-                sBuffer.setLength(0);
-
-                for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = new JSONObject(sBuffer.toString());
+                mem_idx = jsonObject.getString("mem_idx");
+                /*for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                    String isSuccess = jsonObject.getString("isSuccess").toString();
-                    Log.d("성공여부", isSuccess);
+                    ;
+                    //Log.d("성공여부", mem_idx);
                     //Toast.makeText(getApplicationContext(), isSuccess, Toast.LENGTH_LONG).show();
-                }
+                }*/
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
-            return sBuffer.toString();
+            Log.d("맴", mem_idx);
+            return mem_idx;
         }
 
         /*
@@ -397,6 +402,9 @@ public class Home extends AppCompatActivity {
             // 서버의 응답데이터 파싱후 텍스트뷰에 출력
             //textResult.setText(s);
             //Toast.makeText(getApplicationContext(), "성공!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), Mypage.class);
+            intent.putExtra("mem_idx", s);
+            startActivity(intent);
         }
     }
 

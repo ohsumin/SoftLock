@@ -17,16 +17,11 @@
             android:layout_weight="0.5"
             android:background="#ffffff"
             android:orientation="horizontal">
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/hp_type"/>
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:id="@+id/hp_name"
+                android:id="@+id/hpName"
                 android:textSize="17sp"/>
         </LinearLayout>
         <LinearLayout
@@ -36,41 +31,51 @@
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:paddingLeft="5dp"
                 android:id="@+id/restime"
                 android:layout_weight="3"
-                android:gravity="center"
                 android:text="예약시간"
                 android:textSize="17sp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:layout_gravity="left"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
                 android:gravity="center"
-                android:id="@+id/resv_date"
+                android:id="@+id/resvDate"
                 android:textSize="17sp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_gravity="left"
-                android:layout_weight="4"
-                android:id="@+id/resv_time"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:gravity="left"
+                android:id="@+id/resvTime"
                 android:textSize="17sp"/>
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:id="@+id/write"
-                android:text="후기작성"/>
+                android:layout_weight="2"
+                android:id="@+id/cancel_reserv"
+                android:text="예약취소"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="37dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:background="#fff428"
+                android:id="@+id/resvPerm"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.2"/>
+                android:layout_weight="5"/>
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

@@ -9,23 +9,12 @@
     <uses-permission android:name="com.kosmo.softlock.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.provider.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- 현재위치버튼을 나타내기 위한 permission -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 현재위치버튼을 나타내기 위한 permission -->
     <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> -->
-
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <!-- naver app을 통한 인증을 위해 필요한 permission -->
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- network 상태를 미리 체크하여 연결 안된 경우 다이얼로그를 보여주려면 아래 permission 추가 -->
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- android test 돌릴 때 화면 lock 풀어야 로그인 touch 가능 -->
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- naver app을 통한 인증을 위해 필요한 permission -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- network 상태를 미리 체크하여 연결 안된 경우 다이얼로그를 보여주려면 아래 permission 추가 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- android test 돌릴 때 화면 lock 풀어야 로그인 touch 가능 -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -36,6 +25,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".Intro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +37,7 @@
         <activity android:name=".Home" />
         <activity android:name=".Mypage" />
         <activity android:name=".HpSearchMap" />
+        <activity android:name=".After" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -56,11 +47,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".MyReservation" />
-        <activity android:name=".Reserv_item" />
-        <activity android:name=".End_item" />
-        <activity android:name=".Searchmap_item" />
         <activity android:name=".SearchList" />
-        <activity android:name=".SearchList_item"></activity>
+        <activity android:name=".Res" />
     </application>
 
 </manifest>

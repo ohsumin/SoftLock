@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--포커스를 얻었을때()-->
+    <item android:state_focused="true"
+        android:drawable="@drawable/editbox_focused"/>
+    <!--포커스를 잃었을때(기본상태)-->
+    <item android:drawable="@drawable/editbox_default" />
+</selector>
+<!--
+select
+ : 안드로이드에서 Button이나 EditText에 이미지로 커스텀 효과를 주고싶을때ㅑ 사용함.
+    android:state_pressed-> true눌러졌을때, false : 공통적으로 true의 반대
+    android:state_checked-> true 체크했을때,
+    android:state_enabled-> 사용가능할때
+    android:state_focused-> 포커싱 되었을때
+    android:state_selected-> 선택 되었을때.
+-->

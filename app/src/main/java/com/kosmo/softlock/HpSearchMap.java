@@ -186,7 +186,7 @@ public class HpSearchMap extends AppCompatActivity  {
 
                 new AsyncHttpRequest().execute(
                         // 아이디, 성별, 이메일, 생년월일, 전화번호
-                        "http://192.168.0.40:8080/client/Android/searchHp"
+                        "http://192.168.0.40:8080/softlock/Android/searchHp"
                         , "hp_type=" + hp_type
                         , "hp_night=" + isNightChecked
                         , "hp_weekend=" + isWeekendChecked
@@ -418,10 +418,10 @@ public class HpSearchMap extends AppCompatActivity  {
                 // 위 참조변수로 URL연결
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 // 전송방식은 POST로 설정한다. (디폴트는 GET방식)
-                connection.setRequestMethod("GET");
+                connection.setRequestMethod("POST");
                 // OutputStream으로 파라미터를 전달하겠다는 설정
                 connection.setDoOutput(true);
-
+                connection.setDoInput(true);
                 /*
                 요청 파라미터를 OutputStream으로 조립후 전달한다.
                 - 파라미터는 쿼리스트링 형태로 지정한다.
@@ -465,7 +465,9 @@ public class HpSearchMap extends AppCompatActivity  {
             /*
             [{"pass":"1234","regidate":2018-11-20,"name":"오수민","id":"test1"}, ... ]
              */
+
             try {
+
                 //JSONArray jsonArray = new JSONArray(sBuffer.toString());
 
                 // sBuffer 초기화
@@ -513,6 +515,8 @@ public class HpSearchMap extends AppCompatActivity  {
 
             // sBuffer를 SearchList로 넘김
             Intent intent = new Intent(getApplicationContext(), SearchList.class);
+            Log.d("야!!","ㅇㅇ");
+            Log.d("sBuffer1", s);
             intent.putExtra("sBuffer", s);
             startActivity(intent);
         }
