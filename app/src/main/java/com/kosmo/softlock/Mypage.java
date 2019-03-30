@@ -31,6 +31,7 @@ public class Mypage extends AppCompatActivity {
     ImageView btn_end;
 
     String mem_idx = "";
+    String resv_idx = "";
 
 
 
@@ -72,6 +73,7 @@ public class Mypage extends AppCompatActivity {
 
                         "http://192.168.0.40:8080/softlock/Android/reservationlist"
                         , "mem_idx=" + mem_idx
+
                 );
             }
         });
