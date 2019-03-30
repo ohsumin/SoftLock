@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -36,6 +37,9 @@ public class SearchList extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_list);
+
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                //WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         sBuffer = getIntent().getExtras().getString("sBuffer");
         Log.d("sBuffer", sBuffer);

@@ -37,7 +37,7 @@
         <activity android:name=".Home" />
         <activity android:name=".Mypage" />
         <activity android:name=".HpSearchMap" />
-        <activity android:name=".After" />
+        <activity android:name=".Myinfo" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

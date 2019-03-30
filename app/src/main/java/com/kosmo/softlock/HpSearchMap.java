@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -65,6 +66,9 @@ public class HpSearchMap extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hpsearchmap);
+
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                //WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // 검색이름 가져오기
         btn_search = (Button)findViewById(R.id.btn_search);

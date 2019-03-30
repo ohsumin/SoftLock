@@ -17,16 +17,12 @@
             android:layout_weight="0.5"
             android:background="#ffffff"
             android:orientation="horizontal">
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/hp_type"/>
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:id="@+id/hp_name"
+                android:id="@+id/hpName"
                 android:textSize="17sp"/>
         </LinearLayout>
         <LinearLayout
@@ -49,7 +45,7 @@
                 android:layout_weight="4"
                 android:layout_gravity="left"
                 android:gravity="center"
-                android:id="@+id/resv_date"
+                android:id="@+id/resvDate"
                 android:textSize="17sp"/>
             <TextView
                 android:layout_width="0dp"
@@ -57,7 +53,7 @@
                 android:gravity="center"
                 android:layout_gravity="left"
                 android:layout_weight="4"
-                android:id="@+id/resv_time"
+                android:id="@+id/resvTime"
                 android:textSize="17sp"/>
 
             <Button
