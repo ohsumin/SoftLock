@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -35,16 +37,21 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+
+import static com.kosmo.softlock.MainActivity.context;
 
 public class HpSearchMap extends AppCompatActivity  {
 
@@ -62,22 +69,23 @@ public class HpSearchMap extends AppCompatActivity  {
 
     ProgressDialog dialog;
 
+    GoogleMap googleMap;
+    Geocoder geocoder;
+
+    EditText edit_hpName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hpsearchmap);
 
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                //WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        geocoder = new Geocoder(this);
 
         // 검색이름 가져오기
         btn_search = (Button)findViewById(R.id.btn_search);
 
-        // 체크박스 체크여부
-
-
         // 검색이름 가져오기
-        final EditText edit_hpName = (EditText)findViewById(R.id.hp_name);
+        edit_hpName = (EditText)findViewById(R.id.hp_name);
 
         String[] typeList = {"전체과목", "내과", "안과", "치과", "산부인과", "이비인후과", "피부과"};
         final Spinner spinner = (Spinner)findViewById(R.id.spinner_hpType);
@@ -143,7 +151,7 @@ public class HpSearchMap extends AppCompatActivity  {
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
-            map.setMyLocationEnabled(true);
+            //map.setMyLocationEnabled(true);
         }
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -154,26 +162,10 @@ public class HpSearchMap extends AppCompatActivity  {
 
                 map = googleMap;
                 map.getUiSettings().setZoomControlsEnabled(true);
-                requestMyLocation();
 
-                //우측 상단에 위치 버튼
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    map.setMyLocationEnabled(true);
-                    map.getUiSettings().setMyLocationButtonEnabled(true);
-                }
 
-                /*map.getUiSettings().setMyLocationButtonEnabled(true);
-                map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener(){
-                    @Override
-                    public boolean onMyLocationButtonClick() {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "Example de Message for Android",
-                                Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                });*/
+
+
 
             }
         });
@@ -183,10 +175,13 @@ public class HpSearchMap extends AppCompatActivity  {
             e.printStackTrace();
         }
 
+
+
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hp_name = edit_hpName.getText().toString();
+
 
                 new AsyncHttpRequest().execute(
                         // 아이디, 성별, 이메일, 생년월일, 전화번호
@@ -202,7 +197,7 @@ public class HpSearchMap extends AppCompatActivity  {
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setIcon(android.R.drawable.ic_dialog_alert);
-        dialog.setTitle("회원가입 처리중");
+        dialog.setTitle("병원 검색중");
         dialog.setMessage("서버로부터 응답을 기다리고 있습니다.");
     }
 
@@ -211,7 +206,7 @@ public class HpSearchMap extends AppCompatActivity  {
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         try {
-            long minTime = 10000;
+            long minTime = 100000000;
             float minDistance = 0;
 
             manager.requestLocationUpdates(
@@ -271,6 +266,71 @@ public class HpSearchMap extends AppCompatActivity  {
                     });
         } catch (SecurityException e) {
             e.printStackTrace();
+        }
+    }
+
+    // 병원검색을하면 실행하는 함수(마커찍기)
+    public void mapMaker(GoogleMap googleMap, Geocoder geocoder, String searchList){
+
+
+        Log.d("searchList", searchList);
+
+        map.clear();
+
+        //우측 상단에 위치 버튼
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            map.setMyLocationEnabled(true);
+            map.getUiSettings().setMyLocationButtonEnabled(true);
+
+            //Marker[] markers = {};
+
+            // json데이터 파싱
+            try {
+                JSONArray jsonArray = new JSONArray(searchList.toString());
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String address = jsonObject.getString("hp_address");
+                    String hp_name = jsonObject.getString("hp_name");
+                    String hp_type = jsonObject.getString("hp_type");
+
+                    // 주소로 위경도값 받아와 마커찍기(지오코딩)
+                    List<Address> list = null;
+
+                    try {
+                        list = geocoder.getFromLocationName(
+                                address, // 지역 이름
+                                100); // 읽을 개수
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.e("test","입출력 오류 - 서버에서 주소변환시 에러발생");
+                    }
+
+                    if (list != null) {
+                        if (list.size() == 0) {
+                            Toast.makeText(context, "실패", Toast.LENGTH_SHORT).show();
+                        } else {
+                            //Toast.makeText(context, list.get(0).toString(), Toast.LENGTH_SHORT).show();
+                            //          list.get(0).getCountryName();  // 국가명
+                            double lat = list.get(0).getLatitude();    // 위도
+                            double lon = list.get(0).getLongitude();   // 경도
+                            Toast.makeText(context, lat+"/"+lon, Toast.LENGTH_SHORT).show();
+
+                            MarkerOptions markerOptions = new MarkerOptions()
+                                    .position(new LatLng(lat, lon))
+                                    .title(hp_name)
+                                    .snippet(hp_type);
+                            map.addMarker(markerOptions);
+
+                        }
+                    }
+                }
+                dialog.dismiss();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
@@ -512,17 +572,21 @@ public class HpSearchMap extends AppCompatActivity  {
         onPostExecute메소드가 doInBackground의 리턴값을 받음.
          */
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String searchList) {
+            super.onPostExecute(searchList);
             // 진행대화창 닫기
-            dialog.dismiss();
+
 
             // sBuffer를 SearchList로 넘김
-            Intent intent = new Intent(getApplicationContext(), SearchList.class);
+            /*Intent intent = new Intent(getApplicationContext(), SearchList.class);
             Log.d("야!!","ㅇㅇ");
             Log.d("sBuffer1", s);
             intent.putExtra("sBuffer", s);
-            startActivity(intent);
+            startActivity(intent);*/
+
+            Log.d("sBuffer", searchList);
+            requestMyLocation();
+            mapMaker(googleMap, geocoder, searchList);
         }
     }
 }
