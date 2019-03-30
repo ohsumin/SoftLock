@@ -1,5 +1,6 @@
 package com.kosmo.softlock;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,8 +27,10 @@ public class Res extends AppCompatActivity {
     String[] resv_dateArr = new String[100];
     String[] resv_timeArr = new String[100];
     String[] resv_permArr = new String[100];
+    String[] resv_idxArr = new String[100];
 
     String  mem_idx ="";
+    String resv_idx="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,10 @@ public class Res extends AppCompatActivity {
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 //WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        resv_idx = getIntent().getExtras().getString("resv_idx");
         sBuffer = getIntent().getExtras().getString("sBuffer");
+
+
 
         Log.d("멍", sBuffer);
 
@@ -72,13 +78,16 @@ public class Res extends AppCompatActivity {
                 String resv_date = jsonObject.getString("resv_date");
                 String resv_time = jsonObject.getString("resv_time");
                 String resv_perm = jsonObject.getString("resv_perm");
+                String resv_idx = jsonObject.getString("resv_idx");
 
                 //hp_typeArr[i] = hp_type;
                 hp_nameArr[i] = hp_name;
                 resv_dateArr[i] = resv_date;
                 resv_timeArr[i] = resv_time;
                 resv_permArr[i] = resv_perm;
+                resv_idxArr[i] = resv_idx;
                 Log.d("이름", hp_name);
+                Log.d("예약idx", resv_idx);
                 // starArr[i] = hp_score; // 후기 보류
             }
         } catch (Exception e) {
@@ -101,6 +110,9 @@ public class Res extends AppCompatActivity {
     }
 
     class MyAdapter extends BaseAdapter {
+
+
+
         @Override
         public int getCount() {
             return hp_nameArr.length;
@@ -125,6 +137,8 @@ public class Res extends AppCompatActivity {
             view.setResvDate(resv_dateArr[position]);
             view.setResvTime(resv_timeArr[position]);
             view.setResvPerm(resv_permArr[position]);
+
+
 
             return view;
         }

@@ -109,13 +109,20 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         naverLogInButton.setOAuthLoginHandler(naverLoginHandler);
         tv_mail = (TextView)findViewById(R.id.tv_mailaddress);
-        tv_name = (TextView)findViewById(R.id.tv_name);
+       tv_name = (TextView)findViewById(R.id.tv_name);
         tv_gender = (TextView)findViewById(R.id.tv_gender);
         btnGetApi = (Button)findViewById(R.id.btngetapi);
         btnGetApi.setOnClickListener(this);
         btnLogout = (Button)findViewById(R.id.btnlogout);
         btnLogout.setOnClickListener(this);
         btn_login = (Button)findViewById(R.id.btn_login);
+
+        tv_mail.setVisibility(View.GONE);
+        tv_name.setVisibility(View.GONE);
+        tv_gender.setVisibility(View.GONE);
+        btnGetApi.setVisibility(View.GONE);
+        btnLogout.setVisibility(View.GONE);
+        btn_login.setVisibility(View.GONE);
 
     }
 
