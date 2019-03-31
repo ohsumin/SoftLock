@@ -137,6 +137,7 @@ public class Res extends AppCompatActivity {
             view.setResvDate(resv_dateArr[position]);
             view.setResvTime(resv_timeArr[position]);
             view.setResvPerm(resv_permArr[position]);
+            view.setResv_idx(resv_idxArr[position]);
 
 
 

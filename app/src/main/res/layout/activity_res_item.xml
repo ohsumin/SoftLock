@@ -105,5 +105,28 @@
                 android:text="예약취소"/>
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layout_marginLeft="160dp"
+        android:visibility="gone"
+        android:id="@+id/noneed"
+        >
+        <EditText
+            android:layout_width="92dp"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:background="#F1F3F5"
+
+            android:textColor="#000000"
+            android:id="@+id/resv_idx"/>
+
+
     </LinearLayout>
 </LinearLayout>
