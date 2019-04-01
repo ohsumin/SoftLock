@@ -10,46 +10,68 @@
         android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mainicon"
+
+            />
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="회원가입"/>
+            android:text="똑닥똑닥 회원가입"
+            android:fontFamily="serif-monospace"
+            android:textColor="#12264F"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="#ffffff"
-        android:gravity="center">
-
+       >
         <TextView
             android:id="@+id/datePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="생일"/>
+            android:textColor="#12264F"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:text="생일"
+            android:layout_marginLeft="20dp"
+            />
 
+        <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+           >
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:background="@drawable/editbox_motion"
             android:layout_weight="1"
             android:gravity="center"
-            android:hint="년(4자)"
+            android:hint="년(예:1900)"
             android:inputType="number"
-            android:id="@+id/year"/>
+            android:textColor="#000000"
+            android:id="@+id/year"
+
+
+            />
 
         <Spinner
             android:id="@+id/sp_month"
             android:background="@drawable/editbox_motion"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
@@ -57,55 +79,50 @@
         <Spinner
             android:id="@+id/sp_day"
             android:background="@drawable/editbox_motion"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-
-
         <requestFocus />
+       </LinearLayout>
 
     </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
     <LinearLayout
-        android:orientation="horizontal"
-
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#ffffff"
-        android:gravity="center">
+        >
 
         <TextView
             android:id="@+id/textView3"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="전화번호  "/>
+            android:textColor="#12264F"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:text="전화번호"
+            android:layout_marginLeft="16dp"
+            />
 
 
         <EditText
             android:id="@+id/etPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height=""
             android:gravity="center"
             android:background="@drawable/editbox_motion"
             android:layout_weight="6"
-
+            android:hint="'-' 없이 입력해주세요"
             android:inputType="number"
-            android:maxLength="11"><!--EditText에 focus/blur에 대한 효과를 줄때 별도로 xml리소스를 사용한다.-->
+            android:layout_marginLeft="20dp"
+
+            android:maxLength="11"
+
+            ><!--EditText에 focus/blur에 대한 효과를 줄때 별도로 xml리소스를 사용한다.-->
 
             <!--EditText에 포커스를 줄때 사용함함--><!--android:digits="0123456789+#"-->
             <requestFocus />
@@ -119,28 +136,18 @@
         android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center">
-        <Button
-            android:id="@+id/phoneLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#fff428"
-            android:text="휴대폰 번호로 인증하기"/>
-        <Button
-            android:id="@+id/emailLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#fff428"
-            android:text="이메일인증하기"
-            />
+
         <Button
             android:id="@+id/btnJoin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#fff428"
-            android:text="회원가입하기" />
+            android:background="#FFA500"
+            android:text="회원가입"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textColor="#12264F"
+            />
 
     </LinearLayout>
 
