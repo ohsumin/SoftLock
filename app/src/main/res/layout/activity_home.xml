@@ -111,7 +111,7 @@
 
         <EditText
             android:id="@+id/etPhone"
-            android:layout_width="350dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:background="@drawable/editbox_motion"
