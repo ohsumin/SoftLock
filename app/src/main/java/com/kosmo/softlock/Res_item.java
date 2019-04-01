@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,14 +22,16 @@ import java.net.URL;
 
 public class Res_item extends LinearLayout   {
 
+    String resv_idxstr;
+
     //TextView hpType;
     TextView hpName;
     TextView resvDate;
     TextView resvTime;
     Button cancel_reserv;
     TextView resvPerm;
-
-    String resv_idx = "";
+    EditText resv_idx;
+    LinearLayout noneed;
 
     public Res_item(Context context){
         super(context);
@@ -47,19 +50,27 @@ public class Res_item extends LinearLayout   {
         resvTime = (TextView) findViewById(R.id.resvTime);
         resvPerm = (TextView) findViewById(R.id.resvPerm);
         cancel_reserv = (Button) findViewById(R.id.cancel_reserv);
+        resv_idx = (EditText) findViewById(R.id.resv_idx);
+        noneed = (LinearLayout) findViewById(R.id.noneed);
+
+        noneed.setVisibility(View.GONE);
 
         cancel_reserv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resv_idxstr = resv_idx.getText().toString();
+
                 new AsyncHttpRequest3().execute(
 
                         "http://192.168.0.40:8080/softlock/Android/reserdelete"
-                        , "resv_idx=" + resv_idx
+                        , "resv_idx=" + resv_idxstr
 
                 );
 
                 Toast.makeText(getContext(), "예약이 취소되었습니다.",
                         Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
@@ -81,6 +92,8 @@ public class Res_item extends LinearLayout   {
         public void setResvPerm(String text){
             resvPerm.setText(text);
         }
+        public void setResv_idx(String text) { resv_idx.setText(text);  }
+
 }
 
 class AsyncHttpRequest3 extends AsyncTask<String, Void, String> {

@@ -74,10 +74,14 @@ public class HpSearchMap extends AppCompatActivity  {
 
     EditText edit_hpName;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hpsearchmap);
+
+
 
         geocoder = new Geocoder(this);
 
@@ -271,6 +275,7 @@ public class HpSearchMap extends AppCompatActivity  {
     public void mapMaker(GoogleMap googleMap, Geocoder geocoder, String searchList){
 
 
+
         Log.d("searchList", searchList);
 
         map.clear();
@@ -293,6 +298,7 @@ public class HpSearchMap extends AppCompatActivity  {
                     String hp_name = jsonObject.getString("hp_name");
                     String hp_type = jsonObject.getString("hp_type");
 
+
                     // 주소로 위경도값 받아와 마커찍기(지오코딩)
                     List<Address> list = null;
 
@@ -313,12 +319,11 @@ public class HpSearchMap extends AppCompatActivity  {
                             double lat = list.get(0).getLatitude();    // 위도
                             double lon = list.get(0).getLongitude();   // 경도
 
-                            MarkerOptions markerOptions = new MarkerOptions()
+                            final MarkerOptions markerOptions = new MarkerOptions()
                                     .position(new LatLng(lat, lon))
                                     .title(hp_name)
                                     .snippet(hp_type);
                             map.addMarker(markerOptions);
-
                         }
                     }
                 }
@@ -326,6 +331,37 @@ public class HpSearchMap extends AppCompatActivity  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            //정보창 클릭에 대한 리스너
+            map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+
+                 /* String hp_idx = getIntent().getExtras().getString("hp_idx");
+
+                    //Log.d("아아", hp_idx);
+
+                    new AsyncHttpRequest2().execute(
+
+                            "http://192.168.0.40:8080/softlock/Android/info_hp"
+                            , "hp_idx=" + hp_idx
+
+                    );
+*/
+                    //입력된 주소에서 받아오기
+                    /*new AsyncHttpRequest2().execute(
+                            "http://192.168.0.36:8080/softlock/Android/info_hp"
+                            , "hp_name=" + marker.getTitle()
+                    );*/
+
+                }
+            });
+
+            dialog = new ProgressDialog(this);
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setIcon(android.R.drawable.ic_dialog_alert);
+            dialog.setTitle("상세보기 진입 중");
+            dialog.setMessage("서버로부터 응답을 기다리고 있습니다.");
 
         }
     }
@@ -585,4 +621,94 @@ public class HpSearchMap extends AppCompatActivity  {
             mapMaker(googleMap, geocoder, searchList);
         }
     }
+
+    /*class AsyncHttpRequest2 extends AsyncTask<String, Void, String> {
+        // doInBackground 함수 호출전에 미리 호출하는 메소드
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+
+        }
+
+        // execute()가 호출되면 자동으로 호출되는 메소드(실제동작을 처리)
+        @Override
+        protected String doInBackground(String... params) {
+            // execute()를 호출할때 전달한 3개의 파라미터를 가변인자로 전달받는다.
+            // 함수 내부에서는 배열로 사용한다.
+
+            // 파라미터 확인용
+            for (String s : params) {
+                Log.i("AsyncTask Class", "파라미터 : " + s);
+            }
+
+            // 서버의 응답데이터를 저장할 변수(디버깅용)
+            StringBuffer sBuffer = new StringBuffer();
+
+            try {
+                // 요청주소로 URL객체 생성
+                URL url = new URL(params[0]);
+                // 위 참조변수로 URL연결
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                // 전송방식은 POST로 설정한다. (디폴트는 GET방식)
+                connection.setRequestMethod("POST");
+                // OutputStream으로 파라미터를 전달하겠다는 설정
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+
+                OutputStream out = connection.getOutputStream();
+                out.write(params[1].getBytes());
+                out.flush();
+                out.close();
+
+                *//*
+                getResponseCode()를 호출하면 서버로 요청이 전달된다.
+                 *//*
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    // 서버로부터 응답이 온 경우
+
+                    // 응답데이터를 StringBuffer변수에 저장한다.
+                    BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(connection.getInputStream(), "UTF-8")
+                    );
+                    String responseData;
+                    while ((responseData = reader.readLine()) != null) {
+                        sBuffer.append(responseData + "\n\r");
+                    }
+                    reader.close();
+                    Log.i("AsyncTask Class", "HTTP_OK 됨");
+                } else {
+                    // 서버로부터 응답이 없는경우
+                    Log.i("AsyncTask Class", "HTTP_OK 안됨");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+           *//* try {
+                JSONObject jsonObject = new JSONObject(sBuffer.toString());
+                hp_name = jsonObject.getString("hp_name");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+            Log.d("맴", hp_name); *//*
+            return sBuffer.toString();
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            // 진행대화창 닫기
+
+            Log.d("야이따식아",s);
+            // sBuffer를 SearchList로 넘김
+            Intent intent = new Intent(getApplicationContext(), Hp_Info.class);
+            intent.putExtra("sBuffer", s);
+            startActivity(intent);
+
+        }
+    }*/
 }
