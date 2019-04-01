@@ -16,11 +16,9 @@
         android:textStyle="bold"
         android:gravity="center_horizontal"
         />
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="28dp"
@@ -31,15 +29,23 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text=" 주소 : "
+            android:text=" 주소"
             android:textSize="20dp"
             android:textColor="#000000"
             android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/thp_address"
             android:layout_width="0dp"
             android:layout_weight="5"
+
             android:textSize="20dp"
+            android:text="sldkfjsldkfjlskdf"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
@@ -50,14 +56,13 @@
             android:layout_width="0dp"
             android:layout_weight="5"
             android:textSize="20dp"
-            android:layout_marginLeft="67dp"
+
+            android:text="sldkfjldskjflk"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="28dp"
@@ -66,14 +71,20 @@
             />
         <TextView
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:text=" 공지사항 : "
+            android:text=" 공지사항"
             android:textSize="20dp"
-
             android:textColor="#000000"
             android:textStyle="bold" />
+    </LinearLayout>
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/thp_notice"
             android:layout_width="0dp"
@@ -83,9 +94,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="28dp"
@@ -94,13 +104,22 @@
             />
         <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            android:textColor="#000000"
-            android:text=" 병원소개 : "
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text=" 병원소개"
             android:textSize="20dp"
+            android:textColor="#000000"
             android:textStyle="bold" />
+    </LinearLayout>
 
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/thp_intro"
             android:layout_width="0dp"
@@ -109,26 +128,31 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:src="@drawable/bar"
             android:layout_marginLeft="10dp"
-
             />
         <TextView
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:textColor="#000000"
-            android:text=" 전화번호 : "
+            android:text=" 전화번호"
             android:textSize="20dp"
+            android:textColor="#000000"
             android:textStyle="bold" />
+    </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/thp_phone"
             android:layout_width="0dp"
