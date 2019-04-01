@@ -1,15 +1,21 @@
 package com.kosmo.softlock;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Hp_Info extends AppCompatActivity {
+
+    String mem_idx = "";
+    String hp_idx = "";
 
     ///String hp_name, hp_phone, hp_address, hp_intro, hp_notice;
     TextView thp_name;
@@ -34,6 +40,7 @@ public class Hp_Info extends AppCompatActivity {
     TextView thp_closetimeFri;
     TextView thp_closetimeSat;
     TextView thp_closetimeSun;
+    ImageView goReserv;
 
     String hp_opentime;
     String hp_closetime;
@@ -52,6 +59,7 @@ public class Hp_Info extends AppCompatActivity {
         thp_notice = (TextView) findViewById(R.id.thp_notice);
         thp_phone = (TextView) findViewById(R.id.thp_phone);
         thp_address2 = (TextView) findViewById(R.id.thp_address2);
+        goReserv = (ImageView) findViewById(R.id.goReserv);
 
         thp_opentimeMon =  (TextView) findViewById(R.id.thp_opentimeMon);
         thp_opentimeTue =  (TextView) findViewById(R.id.thp_opentimeTue);
@@ -141,6 +149,21 @@ public class Hp_Info extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
+
+        goReserv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // sBuffer를 MainActivity로 넘김
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                //intent.putExtra("hp_name", thp_name);
+                intent.putExtra("mem_idx", mem_idx);
+                intent.putExtra("hp_idx", hp_idx);
+                //intent.putExtra("sBuffer", s);
+                startActivity(intent);
+
+            }
+        });
 
     }
 }
