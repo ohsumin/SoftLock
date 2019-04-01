@@ -81,7 +81,7 @@ public class HpSearchMap extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hpsearchmap);
 
-
+        requestMyLocation();
 
         geocoder = new Geocoder(this);
 
@@ -274,8 +274,6 @@ public class HpSearchMap extends AppCompatActivity  {
     // 병원검색을하면 실행하는 함수(마커찍기)
     public void mapMaker(GoogleMap googleMap, Geocoder geocoder, String searchList){
 
-
-
         Log.d("searchList", searchList);
 
         map.clear();
@@ -349,10 +347,10 @@ public class HpSearchMap extends AppCompatActivity  {
                     );
 */
                     //입력된 주소에서 받아오기
-                    /*new AsyncHttpRequest2().execute(
-                            "http://192.168.0.36:8080/softlock/Android/info_hp"
+                    new AsyncHttpRequest2().execute(
+                            "http://192.168.0.40:8080/softlock/Android/info_hp"
                             , "hp_name=" + marker.getTitle()
-                    );*/
+                    );
 
                 }
             });
@@ -622,7 +620,7 @@ public class HpSearchMap extends AppCompatActivity  {
         }
     }
 
-    /*class AsyncHttpRequest2 extends AsyncTask<String, Void, String> {
+    class AsyncHttpRequest2 extends AsyncTask<String, Void, String> {
         // doInBackground 함수 호출전에 미리 호출하는 메소드
 
         @Override
@@ -662,9 +660,9 @@ public class HpSearchMap extends AppCompatActivity  {
                 out.flush();
                 out.close();
 
-                *//*
-                getResponseCode()를 호출하면 서버로 요청이 전달된다.
-                 *//*
+
+                //getResponseCode()를 호출하면 서버로 요청이 전달된다.
+
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     // 서버로부터 응답이 온 경우
 
@@ -685,15 +683,6 @@ public class HpSearchMap extends AppCompatActivity  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-           *//* try {
-                JSONObject jsonObject = new JSONObject(sBuffer.toString());
-                hp_name = jsonObject.getString("hp_name");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-
-            }
-            Log.d("맴", hp_name); *//*
             return sBuffer.toString();
 
         }
@@ -710,5 +699,5 @@ public class HpSearchMap extends AppCompatActivity  {
             startActivity(intent);
 
         }
-    }*/
+    }
 }
