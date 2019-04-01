@@ -99,10 +99,8 @@ public class HpSearchMap extends AppCompatActivity  {
             public void onClick(View v) {
                 if (checkNight.isChecked()) {
                     isNightChecked = "y";
-                    Toast.makeText(HpSearchMap.this, isNightChecked, Toast.LENGTH_SHORT).show();
                 } else {
                     isNightChecked = "";
-                    Toast.makeText(HpSearchMap.this, isNightChecked, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -112,10 +110,8 @@ public class HpSearchMap extends AppCompatActivity  {
             public void onClick(View v) {
                 if (checkWeekend.isChecked()) {
                     isWeekendChecked = "y";
-                    Toast.makeText(HpSearchMap.this, isWeekendChecked, Toast.LENGTH_SHORT).show();
                 } else {
                     isWeekendChecked = "";
-                    Toast.makeText(HpSearchMap.this, isWeekendChecked, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -126,7 +122,6 @@ public class HpSearchMap extends AppCompatActivity  {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(HpSearchMap.this,"선택된 아이템 : " + spinner.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
                 hp_type = (String)spinner.getItemAtPosition(position);
-                Toast.makeText(HpSearchMap.this,"선택된 아이템 : " + hp_type,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -163,10 +158,13 @@ public class HpSearchMap extends AppCompatActivity  {
                 map = googleMap;
                 map.getUiSettings().setZoomControlsEnabled(true);
 
-
-
-
-
+                requestMyLocation();
+                //우측 상단에 위치 버튼
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    map.setMyLocationEnabled(true);
+                    map.getUiSettings().setMyLocationButtonEnabled(true);
+                }
             }
         });
         try {
@@ -309,13 +307,11 @@ public class HpSearchMap extends AppCompatActivity  {
 
                     if (list != null) {
                         if (list.size() == 0) {
-                            Toast.makeText(context, "실패", Toast.LENGTH_SHORT).show();
                         } else {
                             //Toast.makeText(context, list.get(0).toString(), Toast.LENGTH_SHORT).show();
                             //          list.get(0).getCountryName();  // 국가명
                             double lat = list.get(0).getLatitude();    // 위도
                             double lon = list.get(0).getLongitude();   // 경도
-                            Toast.makeText(context, lat+"/"+lon, Toast.LENGTH_SHORT).show();
 
                             MarkerOptions markerOptions = new MarkerOptions()
                                     .position(new LatLng(lat, lon))
