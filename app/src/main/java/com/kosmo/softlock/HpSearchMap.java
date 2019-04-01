@@ -333,35 +333,30 @@ public class HpSearchMap extends AppCompatActivity  {
             }
 
             //정보창 클릭에 대한 리스너
-            map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+           /* map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
 
-                 /* String hp_idx = getIntent().getExtras().getString("hp_idx");
 
-                    //Log.d("아아", hp_idx);
 
-                    new AsyncHttpRequest2().execute(
 
-                            "http://192.168.0.40:8080/softlock/Android/info_hp"
-                            , "hp_idx=" + hp_idx
 
-                    );
-*/
+
+
                     //입력된 주소에서 받아오기
-                    /*new AsyncHttpRequest2().execute(
+                    new AsyncHttpRequest2().execute(
                             "http://192.168.0.36:8080/softlock/Android/info_hp"
                             , "hp_name=" + marker.getTitle()
-                    );*/
+                    );
 
                 }
-            });
+            });*/
 
-            dialog = new ProgressDialog(this);
+            /*dialog = new ProgressDialog(this);
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.setIcon(android.R.drawable.ic_dialog_alert);
             dialog.setTitle("상세보기 진입 중");
-            dialog.setMessage("서버로부터 응답을 기다리고 있습니다.");
+            dialog.setMessage("서버로부터 응답을 기다리고 있습니다.");*/
 
         }
     }
