@@ -112,7 +112,7 @@
         <EditText
             android:id="@+id/etPhone"
             android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_height=""
             android:gravity="center"
             android:background="@drawable/editbox_motion"
             android:layout_weight="6"

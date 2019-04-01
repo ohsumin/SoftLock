@@ -322,7 +322,6 @@
         android:layout_gravity="center_horizontal">
         <ImageView
             android:layout_width="wrap_content"
-            android:id="@+id/goReserv"
             android:layout_height="wrap_content"
             android:src="@drawable/reservbtn333"
             android:layout_marginTop="60dp"
