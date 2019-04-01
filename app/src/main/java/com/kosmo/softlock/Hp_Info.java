@@ -39,6 +39,8 @@ public class Hp_Info extends AppCompatActivity {
     String hp_closetime;
     String sBuffer = "";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,7 @@ public class Hp_Info extends AppCompatActivity {
         thp_closetimeSun =  (TextView) findViewById(R.id.thp_closetimeSun);
 
 
+       // Log.d("아아", hp_idx);
 
         TextView [] dy = {thp_opentimeMon,thp_opentimeTue,thp_opentimeWed,thp_opentimeThur,thp_opentimeFri,thp_opentimeSat,thp_opentimeSun};
         TextView [] dyc = {thp_closetimeMon, thp_closetimeTue, thp_closetimeWed, thp_closetimeThur, thp_closetimeFri, thp_closetimeSat, thp_closetimeSun};
@@ -119,9 +122,11 @@ public class Hp_Info extends AppCompatActivity {
             String hp_intro = jsonObject2.getString("hp_intro");
             String hp_notice = jsonObject2.getString("hp_notice");
 
+
             Log.d("이름", hp_name);
             Log.d("주소", hp_address);
             Log.d("시간", hp_opentime);
+
 
             thp_name.setText(hp_name);
             thp_address.setText(hp_address);
