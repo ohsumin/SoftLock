@@ -350,7 +350,7 @@ public class HpSearchMap extends AppCompatActivity  {
 */
                     //입력된 주소에서 받아오기
                     new AsyncHttpRequest2().execute(
-                            "http://192.168.0.36:8080/softlock/Android/info_hp"
+                            "http://192.168.0.40:8080/softlock/Android/info_hp"
                             , "hp_name=" + marker.getTitle()
                     );
 
@@ -707,6 +707,7 @@ public class HpSearchMap extends AppCompatActivity  {
             // sBuffer를 SearchList로 넘김
             Intent intent = new Intent(getApplicationContext(), Hp_Info.class);
             intent.putExtra("sBuffer", s);
+            intent.putExtra("hp_name", hp_name);
             startActivity(intent);
 
         }

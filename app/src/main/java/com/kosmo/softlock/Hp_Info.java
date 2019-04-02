@@ -154,8 +154,11 @@ public class Hp_Info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                mem_idx = getIntent().getExtras().getString("mem_idx");
+                hp_idx = getIntent().getExtras().getString("hp_idx");
                 // sBuffer를 MainActivity로 넘김
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HpreserActivity.class);
                 //intent.putExtra("hp_name", thp_name);
                 intent.putExtra("mem_idx", mem_idx);
                 intent.putExtra("hp_idx", hp_idx);

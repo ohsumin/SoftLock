@@ -59,13 +59,13 @@ public class HpreserActivity extends AppCompatActivity {
         resv_symp = (EditText)findViewById(R.id.resv_symp);
         resv_req = (EditText)findViewById(R.id.resv_req);
 
-        mem_idx = getIntent().getExtras().getString("mem_idx");
-        hp_idx = getIntent().getExtras().getString("hp_idx");
+       mem_idx = getIntent().getExtras().getString("mem_idx");
+       hp_idx = getIntent().getExtras().getString("hp_idx");
 
-        Log.d("야", mem_idx);
-        Log.d("야", hp_idx);
-        Intent intent = getIntent();
-        String name = intent.getExtras().getString("hp_name");
+       // Log.d("야", mem_idx);
+       // Log.d("야", hp_idx);
+        //Intent intent = getIntent();
+        String name = getIntent().getExtras().getString("hp_name");
         hp_name = (TextView)findViewById(R.id.hp_name);
         ((TextView) hp_name).setText(name);
         //텍스트뷰 2개 연결
