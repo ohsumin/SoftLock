@@ -148,8 +148,6 @@ public class Voice extends AppCompatActivity implements RecognitionListener {
                     String[] rs = new String[text.size()];
                     text.toArray(rs);
 
-                    textView1.setText(rs[0]);
-
                     Intent intent = new Intent(getApplicationContext(), HpSearchMap.class);
                     intent.putExtra("voiceStr",rs[0]);
                     startActivity(intent);

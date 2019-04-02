@@ -59,7 +59,7 @@ public class Hp_Info extends AppCompatActivity {
         thp_notice = (TextView) findViewById(R.id.thp_notice);
         thp_phone = (TextView) findViewById(R.id.thp_phone);
         thp_address2 = (TextView) findViewById(R.id.thp_address2);
-        goReserv = (ImageView) findViewById(R.id.goReserv);
+        //goReserv = (ImageView) findViewById(R.id.goReserv);
 
         thp_opentimeMon =  (TextView) findViewById(R.id.thp_opentimeMon);
         thp_opentimeTue =  (TextView) findViewById(R.id.thp_opentimeTue);
