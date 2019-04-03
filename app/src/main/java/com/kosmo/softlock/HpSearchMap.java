@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Switch;
@@ -65,7 +66,7 @@ public class HpSearchMap extends AppCompatActivity  {
     String hp_name="";
     String isNightChecked="";
     String isWeekendChecked="";
-    String hp_type="";
+    String hp_type="전체과목";
 
     ProgressDialog dialog;
 
@@ -74,12 +75,72 @@ public class HpSearchMap extends AppCompatActivity  {
 
     EditText edit_hpName;
 
+    double lat=0;    // 위도
+    double lon=0;   // 경도
 
+    String voiceStr = ""; //음성인식 문자열
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hpsearchmap);
+
+
+
+        voiceStr = getIntent().getExtras().getString("voiceStr");
+        if (voiceStr != null) {
+            Toast.makeText(HpSearchMap.this, voiceStr, Toast.LENGTH_SHORT).show();
+            Log.d("voiceStr", voiceStr);
+
+            // 음성인식AI
+            /*
+                ~찾아줘 – 검색시작으로 인식
+                ~병원, ~의원 – 병원이름으로 인식
+                ~진료 – 주말/야간진료로 인식
+                ~과 – 진료과로 인식
+            */
+            String[] voiceSearch = voiceStr.split(" ");
+            boolean flag = false;
+            // 새움병원 찾아 줘
+            // (~찾아줘)검색요청
+            for(int i=0; i<voiceSearch.length; i++) {
+                Log.d("ㅠㅠ", voiceSearch[i]);
+                if (voiceSearch[i].contains("과")) {
+                    Log.d("ㅠㅠ","진입");
+                    hp_type = voiceSearch[i];
+                    flag = true;
+                }
+                if (voiceSearch[i].contains("하는")) {
+                    for (int j = 0; j < voiceSearch.length; j++) {
+                        if (voiceSearch[j].contains("야간")) {
+                            isNightChecked = "y";
+                        }
+                        if (voiceSearch[j].contains("주말")) {
+                            isWeekendChecked = "y";
+                        }
+                    }
+                    flag = true;
+                }
+            }
+
+            if(flag == false){
+                hp_name = voiceSearch[0];
+            }
+
+
+            new AsyncHttpRequest3().execute(
+                    // 아이디, 성별, 이메일, 생년월일, 전화번호
+                    "http://192.168.0.40:8080/softlock/Android/searchHp"
+                    , "hp_type=" + hp_type
+                    , "hp_night=" + isNightChecked
+                    , "hp_weekend=" + isWeekendChecked
+                    , "hp_name=" + hp_name
+            );
+        }
+        else{
+            requestMyLocation();
+        }
+
 
 
 
@@ -162,7 +223,7 @@ public class HpSearchMap extends AppCompatActivity  {
                 map = googleMap;
                 map.getUiSettings().setZoomControlsEnabled(true);
 
-                requestMyLocation();
+                //requestMyLocation();
                 //우측 상단에 위치 버튼
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                         ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -177,6 +238,14 @@ public class HpSearchMap extends AppCompatActivity  {
             e.printStackTrace();
         }
 
+        Button mike = (Button) findViewById(R.id.mike);
+        mike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Voice.class);
+                startActivity(intent);
+            }
+        });
 
 
         btn_search.setOnClickListener(new View.OnClickListener() {
@@ -193,6 +262,11 @@ public class HpSearchMap extends AppCompatActivity  {
                         , "hp_weekend=" + isWeekendChecked
                         , "hp_name=" + hp_name
                 );
+
+                Log.d("ㅇㅇ", hp_name);
+                Log.d("ㅇㅇ", hp_type);
+                Log.d("ㅇㅇ", isNightChecked);
+                Log.d("ㅇㅇ", isWeekendChecked);
             }
         });
 
@@ -274,8 +348,6 @@ public class HpSearchMap extends AppCompatActivity  {
     // 병원검색을하면 실행하는 함수(마커찍기)
     public void mapMaker(GoogleMap googleMap, Geocoder geocoder, String searchList){
 
-
-
         Log.d("searchList", searchList);
 
         map.clear();
@@ -291,6 +363,8 @@ public class HpSearchMap extends AppCompatActivity  {
             // json데이터 파싱
             try {
                 JSONArray jsonArray = new JSONArray(searchList.toString());
+
+
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -316,8 +390,8 @@ public class HpSearchMap extends AppCompatActivity  {
                         } else {
                             //Toast.makeText(context, list.get(0).toString(), Toast.LENGTH_SHORT).show();
                             //          list.get(0).getCountryName();  // 국가명
-                            double lat = list.get(0).getLatitude();    // 위도
-                            double lon = list.get(0).getLongitude();   // 경도
+                            lat = list.get(0).getLatitude();    // 위도
+                            lon = list.get(0).getLongitude();   // 경도
 
                             final MarkerOptions markerOptions = new MarkerOptions()
                                     .position(new LatLng(lat, lon))
@@ -328,6 +402,8 @@ public class HpSearchMap extends AppCompatActivity  {
                     }
                 }
                 dialog.dismiss();
+                LatLng startingPoint = new LatLng(lat, lon);
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(startingPoint,14));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -338,14 +414,10 @@ public class HpSearchMap extends AppCompatActivity  {
                 public void onInfoWindowClick(Marker marker) {
 
                  /* String hp_idx = getIntent().getExtras().getString("hp_idx");
-
                     //Log.d("아아", hp_idx);
-
                     new AsyncHttpRequest2().execute(
-
                             "http://192.168.0.40:8080/softlock/Android/info_hp"
                             , "hp_idx=" + hp_idx
-
                     );
 */
                     //입력된 주소에서 받아오기
@@ -556,46 +628,6 @@ public class HpSearchMap extends AppCompatActivity  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            // 눌러진 버튼이 로그인이면 파싱후 결과를 출력함
-            /*
-            [{"pass":"1234","regidate":2018-11-20,"name":"오수민","id":"test1"}, ... ]
-             */
-
-            try {
-
-                //JSONArray jsonArray = new JSONArray(sBuffer.toString());
-
-                // sBuffer 초기화
-                /*sBuffer.setLength(0);
-
-                Toast.makeText(getApplicationContext(), jsonArray.length(), Toast.LENGTH_LONG).show();
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    String hp_id = jsonObject.getString("hp_id");
-                    String hp_pw = jsonObject.getString("hp_pw");
-                    String hp_name = jsonObject.getString("hp_name");
-                    String hp_num = jsonObject.getString("hp_num");
-                    String hp_username = jsonObject.getString("hp_username");
-                    String hp_email = jsonObject.getString("hp_email");
-                    String hp_phone = jsonObject.getString("hp_phone");
-                    String hp_address = jsonObject.getString("hp_address");
-                    String hp_night = jsonObject.getString("hp_night");
-                    String hp_wkend = jsonObject.getString("hp_wkend");
-                    String hp_intro = jsonObject.getString("hp_intro");
-                    String hp_notice = jsonObject.getString("hp_notice");
-                    String hp_ori_filename = jsonObject.getString("hp_ori_filename");
-                    String hp_perm = jsonObject.getString("hp_perm");
-                    String hp_regidate = jsonObject.getString("hp_regidate");
-                    String hp_hpphone = jsonObject.getString("hp_hpphone");
-                    String hp_address2 = jsonObject.getString("hp_address2");
-                    String hp_type = jsonObject.getString("hp_type");
-
-                }*/
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             return sBuffer.toString();
         }
 
@@ -617,7 +649,99 @@ public class HpSearchMap extends AppCompatActivity  {
             startActivity(intent);*/
 
             Log.d("sBuffer", searchList);
-            requestMyLocation();
+            //requestMyLocation();
+            mapMaker(googleMap, geocoder, searchList);
+        }
+    }
+
+    // 음성인식
+    class AsyncHttpRequest3 extends AsyncTask<String, Void, String> {
+        // doInBackground 함수 호출전에 미리 호출하는 메소드
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            // 서버로 요청하는 시점에 프로그레스 대화창을 띄워준다.
+            /*if (!dialog.isShowing()) {
+                dialog.show();
+            }*/
+        }
+
+        // execute()가 호출되면 자동으로 호출되는 메소드(실제동작을 처리)
+        @Override
+        protected String doInBackground(String... params) {
+            // execute()를 호출할때 전달한 3개의 파라미터를 가변인자로 전달받는다.
+            // 함수 내부에서는 배열로 사용한다.
+
+            // 파라미터 확인용
+            for (String s : params) {
+                Log.i("AsyncTask Class", "파라미터 : " + s);
+            }
+
+            // 서버의 응답데이터를 저장할 변수(디버깅용)
+            StringBuffer sBuffer = new StringBuffer();
+
+            try {
+                // 요청주소로 URL객체 생성
+                URL url = new URL(params[0]);
+                // 위 참조변수로 URL연결
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                // 전송방식은 POST로 설정한다. (디폴트는 GET방식)
+                connection.setRequestMethod("POST");
+                // OutputStream으로 파라미터를 전달하겠다는 설정
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+                /*
+                요청 파라미터를 OutputStream으로 조립후 전달한다.
+                - 파라미터는 쿼리스트링 형태로 지정한다.
+                - 한국어를 전송하는 경우에는 URLEncode를 해야한다.
+                - 아래와 같이 처리하면 Request Body에 데이터를 담을 수 있다.
+                 */
+                OutputStream out = connection.getOutputStream();
+                out.write(params[1].getBytes());
+                out.write("&".getBytes());
+                out.write(params[2].getBytes());
+                out.write("&".getBytes());
+                out.write(params[3].getBytes());
+                out.write("&".getBytes());
+                out.write(params[4].getBytes());
+                out.flush();
+                out.close();
+
+                /*
+                getResponseCode()를 호출하면 서버로 요청이 전달된다.
+                 */
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    // 서버로부터 응답이 온 경우
+                    // 응답데이터를 StringBuffer변수에 저장한다.
+                    BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(connection.getInputStream(), "UTF-8")
+                    );
+                    String responseData;
+                    while ((responseData = reader.readLine()) != null) {
+                        sBuffer.append(responseData + "\n\r");
+                    }
+                    reader.close();
+                } else {
+                    // 서버로부터 응답이 없는경우
+                    Log.i("AsyncTask Class", "HTTP_OK 안됨");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return sBuffer.toString();
+        }
+
+        /*
+        doInBackground메소드가 정상적으로 완료되면 onPostExecute()실행.
+        onPostExecute메소드가 doInBackground의 리턴값을 받음.
+         */
+        @Override
+        protected void onPostExecute(String searchList) {
+            super.onPostExecute(searchList);
+            Log.d("sBuffer", searchList);
+            //requestMyLocation();
             mapMaker(googleMap, geocoder, searchList);
         }
     }
@@ -662,9 +786,9 @@ public class HpSearchMap extends AppCompatActivity  {
                 out.flush();
                 out.close();
 
-                /*
-                getResponseCode()를 호출하면 서버로 요청이 전달된다.
-                 */
+
+                //getResponseCode()를 호출하면 서버로 요청이 전달된다.
+
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     // 서버로부터 응답이 온 경우
 
@@ -685,15 +809,6 @@ public class HpSearchMap extends AppCompatActivity  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-           try {
-                JSONObject jsonObject = new JSONObject(sBuffer.toString());
-                hp_name = jsonObject.getString("hp_name");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-
-            }
-            Log.d("맴", hp_name);
             return sBuffer.toString();
 
         }
@@ -712,4 +827,6 @@ public class HpSearchMap extends AppCompatActivity  {
 
         }
     }
+
+
 }
