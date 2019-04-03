@@ -177,7 +177,7 @@ public class Home extends AppCompatActivity {
 
                 new AsyncHttpRequest().execute(
                         // 아이디, 성별, 이메일, 생년월일, 전화번호
-                        "http://192.168.0.40:8080/softlock/Android/join"
+                        "http://192.168.0.33:8080/softlock/Android/join"
                         , "mem_id=" + id
                         , "mem_pw=" + "NAVERLOGIN!"
                         , "mem_name=" + name

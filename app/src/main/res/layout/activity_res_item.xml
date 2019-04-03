@@ -53,7 +53,7 @@
                 android:layout_gravity="left"
                 android:paddingLeft="5dp"
                 android:id="@+id/restime"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:text="예약시간 "
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="7"
                 android:gravity="center"
                 android:textColor="#000000"
                 android:id="@+id/resvDate"
@@ -71,7 +71,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="3"
                 android:textColor="#000000"
                 android:id="@+id/resvTime"
 

@@ -68,12 +68,15 @@ public class HpSearchMap extends AppCompatActivity  {
     String isWeekendChecked="";
     String hp_type="전체과목";
 
+
+
     ProgressDialog dialog;
 
     GoogleMap googleMap;
     Geocoder geocoder;
 
     EditText edit_hpName;
+    String mem_idx="";
 
     double lat=0;    // 위도
     double lon=0;   // 경도
@@ -85,7 +88,8 @@ public class HpSearchMap extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hpsearchmap);
 
-
+        mem_idx = getIntent().getExtras().getString("mem_idx");
+        Log.d("멤", mem_idx);
 
         voiceStr = getIntent().getExtras().getString("voiceStr");
         if (voiceStr != null) {
@@ -130,7 +134,7 @@ public class HpSearchMap extends AppCompatActivity  {
 
             new AsyncHttpRequest3().execute(
                     // 아이디, 성별, 이메일, 생년월일, 전화번호
-                    "http://192.168.0.40:8080/softlock/Android/searchHp"
+                    "http://192.168.0.33:8080/softlock/Android/searchHp"
                     , "hp_type=" + hp_type
                     , "hp_night=" + isNightChecked
                     , "hp_weekend=" + isWeekendChecked
@@ -243,6 +247,7 @@ public class HpSearchMap extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Voice.class);
+                intent.putExtra("mem_idx", mem_idx);
                 startActivity(intent);
             }
         });
@@ -256,7 +261,7 @@ public class HpSearchMap extends AppCompatActivity  {
 
                 new AsyncHttpRequest().execute(
                         // 아이디, 성별, 이메일, 생년월일, 전화번호
-                        "http://192.168.0.40:8080/softlock/Android/searchHp"
+                        "http://192.168.0.33:8080/softlock/Android/searchHp"
                         , "hp_type=" + hp_type
                         , "hp_night=" + isNightChecked
                         , "hp_weekend=" + isWeekendChecked
@@ -413,16 +418,10 @@ public class HpSearchMap extends AppCompatActivity  {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
 
-                 /* String hp_idx = getIntent().getExtras().getString("hp_idx");
-                    //Log.d("아아", hp_idx);
-                    new AsyncHttpRequest2().execute(
-                            "http://192.168.0.40:8080/softlock/Android/info_hp"
-                            , "hp_idx=" + hp_idx
-                    );
-*/
+
                     //입력된 주소에서 받아오기
                     new AsyncHttpRequest2().execute(
-                            "http://192.168.0.40:8080/softlock/Android/info_hp"
+                            "http://192.168.0.33:8080/softlock/Android/info_hp"
                             , "hp_name=" + marker.getTitle()
                     );
 
@@ -505,20 +504,7 @@ public class HpSearchMap extends AppCompatActivity  {
         }
     }
 
-    /*private void showMyLocationMarker(Location location) {
-        if (myLocationMarker == null) {
-            myLocationMarker = new MarkerOptions();
-            myLocationMarker.position(new LatLng(location.getLatitude(),
-                    location.getLongitude()));
-            myLocationMarker.title("내 위치\n");
-            myLocationMarker.snippet("GPS로 확인한 위치");
-            myLocationMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.mylocation));
-            map.addMarker(myLocationMarker);
-        } else {
-            myLocationMarker.position(new LatLng(location.getLatitude(),
-                    location.getLongitude()));
-        }
-    }*/
+
 
     private void showCurrentLocation(Location location) {
         LatLng curPoint = new LatLng(location.getLatitude(), location.getLongitude());
@@ -822,7 +808,8 @@ public class HpSearchMap extends AppCompatActivity  {
             // sBuffer를 SearchList로 넘김
             Intent intent = new Intent(getApplicationContext(), Hp_Info.class);
             intent.putExtra("sBuffer", s);
-            intent.putExtra("hp_name", hp_name);
+            //intent.putExtra("hp_name", hp_name);
+            intent.putExtra("mem_idx", mem_idx);
             startActivity(intent);
 
         }

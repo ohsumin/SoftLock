@@ -18,7 +18,7 @@ public class End_item extends LinearLayout {
     TextView restime;
     TextView resvDate;
     TextView resvTime;
-    Button write;
+
 
 
 
@@ -35,7 +35,7 @@ public class End_item extends LinearLayout {
         restime = (TextView) findViewById(R.id.restime);
         resvDate = (TextView) findViewById(R.id.resvDate);
         resvTime = (TextView) findViewById(R.id.resvTime);
-        write = (Button)findViewById(R.id.write);
+
 
 
     }

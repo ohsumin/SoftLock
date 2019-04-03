@@ -66,7 +66,7 @@ public class Myres extends Fragment {
 
         new AsyncHttpRequest().execute(
                 // 아이디, 성별, 이메일, 생년월일, 전화번호
-                "http://192.168.0.40:8080/softlock/Android/reservationlist"
+                "http://192.168.0.33:8080/softlock/Android/reservationlist"
         );
 
 

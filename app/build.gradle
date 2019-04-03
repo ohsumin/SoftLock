@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     defaultConfig {
         applicationId "com.kosmo.softlock"
-        minSdkVersion 25
+        minSdkVersion 23
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"

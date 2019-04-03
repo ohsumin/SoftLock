@@ -12,10 +12,15 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 public class Hp_Info extends AppCompatActivity {
 
-    String mem_idx = "";
-    String hp_idx = "";
+
+
 
     ///String hp_name, hp_phone, hp_address, hp_intro, hp_notice;
     TextView thp_name;
@@ -44,8 +49,12 @@ public class Hp_Info extends AppCompatActivity {
 
     String hp_opentime;
     String hp_closetime;
+
+    String mem_idx = "";
     String sBuffer = "";
 
+    ArrayList<String> opentime;
+    ArrayList<String> closetime;
 
 
     @Override
@@ -53,13 +62,21 @@ public class Hp_Info extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hp_info);
 
+
+        opentime = new ArrayList<String>();
+        closetime = new ArrayList<String>();
+        mem_idx = getIntent().getExtras().getString("mem_idx");
+        sBuffer = getIntent().getExtras().getString("sBuffer");
+
+
+
         thp_name = (TextView) findViewById(R.id.thp_name);
         thp_address = (TextView) findViewById(R.id.thp_address);
         thp_intro = (TextView) findViewById(R.id.thp_intro);
         thp_notice = (TextView) findViewById(R.id.thp_notice);
         thp_phone = (TextView) findViewById(R.id.thp_phone);
         thp_address2 = (TextView) findViewById(R.id.thp_address2);
-        //goReserv = (ImageView) findViewById(R.id.goReserv);
+        goReserv = (ImageView) findViewById(R.id.goReserv);
 
         thp_opentimeMon =  (TextView) findViewById(R.id.thp_opentimeMon);
         thp_opentimeTue =  (TextView) findViewById(R.id.thp_opentimeTue);
@@ -84,8 +101,37 @@ public class Hp_Info extends AppCompatActivity {
         TextView [] dyc = {thp_closetimeMon, thp_closetimeTue, thp_closetimeWed, thp_closetimeThur, thp_closetimeFri, thp_closetimeSat, thp_closetimeSun};
 
 
-        sBuffer = getIntent().getExtras().getString("sBuffer");
-        Log.d("sBuffer", sBuffer);
+
+
+
+        goReserv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("sBufferㅗㅗㅗㅗ", sBuffer);
+                Log.d("mem_idx", mem_idx);
+
+
+               /* mem_idx = getIntent().getExtras().getString("mem_idx");
+                sBuffer = getIntent().getExtras().getString("sBuffer");*/
+
+                //mem_idx = getIntent().getExtras().getString("mem_idx");
+
+                Intent intent = new Intent(getApplicationContext(), HpreserActivity.class);
+
+                intent.putExtra("mem_idx", mem_idx);
+                intent.putExtra("sBuffer", sBuffer);
+                intent.putStringArrayListExtra("opentime", opentime);
+                intent.putStringArrayListExtra("closetime", closetime);
+
+               //String[] dy = new String[] {dy[0]};
+               //String[] dyc = new String[] {thp_closetimeMon, thp_closetimeTue, thp_closetimeWed, thp_closetimeThur, thp_closetimeFri, thp_closetimeSat, thp_closetimeSun};
+
+
+                startActivity(intent);
+
+                }
+        });
 
         try{
             JSONObject jsonObject = new JSONObject(sBuffer.toString());
@@ -119,10 +165,13 @@ public class Hp_Info extends AppCompatActivity {
 
                 dy[i].setText(hp_opentime+" - ");
                 dyc[i].setText(""+hp_closetime);
+
+                opentime.add(hp_opentime);
+                closetime.add(hp_closetime);
                 //Log.d("sBuffer", d.toString()); 7줄 받아옴
             }
 
-            Log.d("sBuffer", jsonObject2.getString("hp_name")); //찍힘
+            Log.d("sBuffer222", jsonObject2.getString("hp_name")); //찍힘
             String hp_name = jsonObject2.getString("hp_name");
             String hp_phone = jsonObject2.getString("hp_phone");
             String hp_address = jsonObject2.getString("hp_address");
@@ -143,30 +192,30 @@ public class Hp_Info extends AppCompatActivity {
             thp_intro.setText(hp_intro);
             thp_notice.setText(hp_notice);
 
-
-
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-        goReserv.setOnClickListener(new View.OnClickListener() {
+       /* goReserv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+               *//* mem_idx = getIntent().getExtras().getString("mem_idx");
+                sBuffer = getIntent().getExtras().getString("sBuffer");*//*
 
-                mem_idx = getIntent().getExtras().getString("mem_idx");
-                hp_idx = getIntent().getExtras().getString("hp_idx");
-                // sBuffer를 MainActivity로 넘김
+                //mem_idx = getIntent().getExtras().getString("mem_idx");
+
                 Intent intent = new Intent(getApplicationContext(), HpreserActivity.class);
-                //intent.putExtra("hp_name", thp_name);
+
                 intent.putExtra("mem_idx", mem_idx);
-                intent.putExtra("hp_idx", hp_idx);
-                //intent.putExtra("sBuffer", s);
+                intent.putExtra("sBuffer", sBuffer);
+
                 startActivity(intent);
 
             }
-        });
+        });*/
+
 
     }
 }

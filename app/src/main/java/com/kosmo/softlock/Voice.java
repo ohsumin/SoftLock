@@ -20,13 +20,14 @@ public class Voice extends AppCompatActivity implements RecognitionListener {
 
     private static final int REQUEST_CODE = 1000;
     TextView textView1;
-
+    String mem_idx = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice);
 
+        mem_idx = getIntent().getExtras().getString("mem_idx");
         textView1 = (TextView) findViewById(R.id.textView1);
 
         try {
@@ -150,6 +151,7 @@ public class Voice extends AppCompatActivity implements RecognitionListener {
 
                     Intent intent = new Intent(getApplicationContext(), HpSearchMap.class);
                     intent.putExtra("voiceStr",rs[0]);
+                    intent.putExtra("mem_idx", mem_idx);
                     startActivity(intent);
                 }
 

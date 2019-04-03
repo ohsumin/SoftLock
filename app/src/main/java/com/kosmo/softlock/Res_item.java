@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -61,14 +62,16 @@ public class Res_item extends LinearLayout   {
                 resv_idxstr = resv_idx.getText().toString();
 
                 new AsyncHttpRequest3().execute(
-
-                        "http://192.168.0.40:8080/softlock/Android/reserdelete"
+                     "http://192.168.0.33:8080/softlock/Android/reserdelete"
                         , "resv_idx=" + resv_idxstr
 
                 );
 
+
+
                 Toast.makeText(getContext(), "예약이 취소되었습니다.",
                         Toast.LENGTH_SHORT).show();
+
 
 
             }

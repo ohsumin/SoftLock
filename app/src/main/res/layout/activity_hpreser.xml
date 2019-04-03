@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical">
 
     <ScrollView
-
-        xmlns:android="http://schemas.android.com/apk/res/android"
-
-        xmlns:tools="http://schemas.android.com/tools"
 
         android:id="@+id/ScrollView1"
 
@@ -17,7 +14,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
@@ -46,13 +43,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
-                    android:id="@+id/hp_name"
+                    android:id="@+id/hpname"
                     />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal"
                 >
 
@@ -69,28 +67,131 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:onClick="mOnClick"
+                    android:background="#f8a903"
+                    android:textSize="20sp"
                     android:text="날짜선택"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="20dp"
-                    android:text="   시간 : "
-                    android:textStyle="bold"
-                    />
 
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/resvTime"/>
+
+
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="20dp"
+                    android:text="예약시간 : "
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <RadioGroup
+                    android:id="@+id/spinner1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+
+
+                        <RadioButton
+                            android:id="@+id/radio0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="09:00" />
+
+
+                        <RadioButton
+                            android:id="@+id/radio1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10:00" />
+
+                        <RadioButton
+                            android:id="@+id/radio2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11:00" />
+
+                        <RadioButton
+                            android:id="@+id/radio3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12:00" />
+
+                        <RadioButton
+                            android:id="@+id/radio4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="13:00" />
+
+                        <RadioButton
+                            android:id="@+id/radio5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00" />
+
+
+                        <RadioButton
+                            android:id="@+id/radio6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="15:00" />
+
+
+                        <RadioButton
+                            android:id="@+id/radio7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="16:00" />
+
+                        <RadioButton
+                            android:id="@+id/radio8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="17:00" />
+
+                        <RadioButton
+                            android:id="@+id/radio9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="18:00" />
+
+                        <RadioButton
+                            android:id="@+id/radio10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="19:00" />
+
+                        <RadioButton
+                            android:id="@+id/radio11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20:00" />
+
+
+
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal"
                 >
 
@@ -110,19 +211,27 @@
                     android:textSize="20sp"
                     android:text="날짜 출력"
                     />
+                <TextView
+                    android:id="@+id/resv_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="날짜 출력"
+                    />
 
                 <TextView
                     android:id="@+id/resv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:textSize="20sp"
-                    android:text="시간출력" />
+                     />
 
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal"
                 >
 
@@ -148,6 +257,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 >
                 <TextView
@@ -174,12 +284,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
                 >
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
+                    android:background="#f8a903"
                     android:text="예약신청"
                     android:id="@+id/resvBtn"
                     />
