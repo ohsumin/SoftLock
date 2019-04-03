@@ -93,7 +93,7 @@
     <FrameLayout
         android:id="@+id/fram_map"
         android:layout_width="match_parent"
-        android:layout_height="437dp" >
+        android:layout_height="478dp" >
 
         <fragment
             android:id="@+id/map"
