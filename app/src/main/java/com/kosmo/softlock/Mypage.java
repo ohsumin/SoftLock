@@ -262,6 +262,7 @@ public class Mypage extends AppCompatActivity {
             // sBuffer를 SearchList로 넘김
             Intent intent = new Intent(getApplicationContext(), Res.class);
             intent.putExtra("sBuffer", s);
+            intent.putExtra("mem_idx", mem_idx);
             startActivity(intent);
 
         }

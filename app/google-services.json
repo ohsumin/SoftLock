@@ -1,0 +1,110 @@
+{
+  "project_info": {
+    "project_number": "851681060689",
+    "firebase_url": "https://pushtest-22028.firebaseio.com",
+    "project_id": "pushtest-22028",
+    "storage_bucket": "pushtest-22028.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851681060689:android:3bcc3aaa0ce6068a",
+        "android_client_info": {
+          "package_name": "com.kosmo.pushtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851681060689-b3rgpojs0vcndgl1i3mnf2uvkb60a6fv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kosmo.pushtest",
+            "certificate_hash": "f3a83ed5988c6139eaed2d29e892639a4a331e72"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_gAqcCMcE0XTgA0yDvMb6tSBZOe6jAhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851681060689-2qqghja886nr7619jj91dqt6lprl1dlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851681060689:android:bcb7bc76c2ade88e",
+        "android_client_info": {
+          "package_name": "com.kosmo.pushtest2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851681060689-ea921l5db6mqmphb7fok0kb78jqem133.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kosmo.pushtest2",
+            "certificate_hash": "f3a83ed5988c6139eaed2d29e892639a4a331e72"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_gAqcCMcE0XTgA0yDvMb6tSBZOe6jAhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851681060689-2qqghja886nr7619jj91dqt6lprl1dlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851681060689:android:e4ed12394804c2c6",
+        "android_client_info": {
+          "package_name": "com.kosmo.softlock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851681060689-d8g9c0pigrvtrbtjd13eqare40dstphf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kosmo.softlock",
+            "certificate_hash": "f3a83ed5988c6139eaed2d29e892639a4a331e72"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_gAqcCMcE0XTgA0yDvMb6tSBZOe6jAhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851681060689-2qqghja886nr7619jj91dqt6lprl1dlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

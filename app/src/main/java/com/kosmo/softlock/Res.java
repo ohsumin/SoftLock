@@ -41,6 +41,7 @@ public class Res extends AppCompatActivity {
 
         resv_idx = getIntent().getExtras().getString("resv_idx");
         sBuffer = getIntent().getExtras().getString("sBuffer");
+        mem_idx = getIntent().getExtras().getString("mem_idx");
 
 
 
