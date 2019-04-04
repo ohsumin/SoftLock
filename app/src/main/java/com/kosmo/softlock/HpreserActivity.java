@@ -208,7 +208,6 @@ public class HpreserActivity extends AppCompatActivity {
             mDay = cal.get(Calendar.DAY_OF_MONTH);
             mHour = cal.get(Calendar.HOUR_OF_DAY);
             weekday = cal.get(Calendar.DAY_OF_WEEK);
-            resv_week.setText(String.valueOf(weekday));
             Log.d("weekday",String.valueOf(weekday));
 
 
@@ -249,7 +248,7 @@ public class HpreserActivity extends AppCompatActivity {
 
                     new AsyncHttpRequest().execute(
                             // 아이디, 성별, 이메일, 생년월일, 전화번호
-                            "http://192.168.0.33:8080/softlock/Android/reservationAction"
+                            "http://192.168.0.38:8080/softlock/Android/reservationAction"
                             , "hp_idx=" + hp_idx
                             , "mem_idx=" + mem_idx
                             , "resv_req=" + resv_req_str

@@ -13,6 +13,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:layout_height="0dp"
             android:layout_weight="0.5"
             android:background="#ffffff"
@@ -22,39 +24,47 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
+                android:paddingLeft="13dp"
                 android:id="@+id/hpName"
-                android:textSize="17sp"/>
+                android:textSize="30dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:background="#ffffff"
             android:orientation="horizontal">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="28dp"
+                android:src="@drawable/clock"
+                android:layout_marginLeft="10dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:paddingLeft="5dp"
+                android:layout_height="wrap_content"
+
                 android:id="@+id/restime"
                 android:layout_weight="3"
                 android:gravity="center"
                 android:text="예약시간"
-                android:textSize="17sp"/>
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:layout_gravity="left"
                 android:gravity="center"
                 android:id="@+id/resvDate"
-                android:textSize="17sp"/>
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_gravity="left"
                 android:layout_weight="4"
                 android:id="@+id/resvTime"
-                android:textSize="17sp"/>
+                android:textSize="20dp"/>
 
 
         </LinearLayout>

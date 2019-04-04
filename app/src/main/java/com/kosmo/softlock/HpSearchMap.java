@@ -134,7 +134,7 @@ public class HpSearchMap extends AppCompatActivity  {
 
             new AsyncHttpRequest3().execute(
                     // 아이디, 성별, 이메일, 생년월일, 전화번호
-                    "http://192.168.0.33:8080/softlock/Android/searchHp"
+                    "http://192.168.0.38:8080/softlock/Android/searchHp"
                     , "hp_type=" + hp_type
                     , "hp_night=" + isNightChecked
                     , "hp_weekend=" + isWeekendChecked
@@ -215,7 +215,7 @@ public class HpSearchMap extends AppCompatActivity  {
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
-            //map.setMyLocationEnabled(true);
+            map.setMyLocationEnabled(true);
         }
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -226,6 +226,11 @@ public class HpSearchMap extends AppCompatActivity  {
 
                 map = googleMap;
                 map.getUiSettings().setZoomControlsEnabled(true);
+
+                double lat = 37.482377;
+                double lon = 126.877002;
+                LatLng startingPoint = new LatLng(lat, lon);
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(startingPoint, 14));
 
                 //requestMyLocation();
                 //우측 상단에 위치 버튼
@@ -261,7 +266,7 @@ public class HpSearchMap extends AppCompatActivity  {
 
                 new AsyncHttpRequest().execute(
                         // 아이디, 성별, 이메일, 생년월일, 전화번호
-                        "http://192.168.0.33:8080/softlock/Android/searchHp"
+                        "http://192.168.0.38:8080/softlock/Android/searchHp"
                         , "hp_type=" + hp_type
                         , "hp_night=" + isNightChecked
                         , "hp_weekend=" + isWeekendChecked
@@ -421,7 +426,7 @@ public class HpSearchMap extends AppCompatActivity  {
 
                     //입력된 주소에서 받아오기
                     new AsyncHttpRequest2().execute(
-                            "http://192.168.0.33:8080/softlock/Android/info_hp"
+                            "http://192.168.0.38:8080/softlock/Android/info_hp"
                             , "hp_name=" + marker.getTitle()
                     );
 
@@ -509,7 +514,7 @@ public class HpSearchMap extends AppCompatActivity  {
     private void showCurrentLocation(Location location) {
         LatLng curPoint = new LatLng(location.getLatitude(), location.getLongitude());
 
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 16));
+        //map.moveCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 16));
 
         //showMyLocationMarker(location);
     }

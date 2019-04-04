@@ -71,7 +71,7 @@ public class Mypage extends AppCompatActivity {
             public void onClick(View v) {
                 new AsyncHttpRequest2().execute(
 
-                        "http://192.168.0.33:8080/softlock/Android/reservationlist"
+                        "http://192.168.0.38:8080/softlock/Android/reservationlist"
                         , "mem_idx=" + mem_idx
 
                 );
@@ -85,7 +85,7 @@ public class Mypage extends AppCompatActivity {
             public void onClick(View v) {
                 new AsyncHttpRequest().execute(
 
-                        "http://192.168.0.33:8080/softlock/Android/reservationlist2"
+                        "http://192.168.0.38:8080/softlock/Android/reservationlist2"
                         , "mem_idx=" + mem_idx
                 );
             }

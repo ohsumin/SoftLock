@@ -62,7 +62,7 @@ public class Res_item extends LinearLayout   {
                 resv_idxstr = resv_idx.getText().toString();
 
                 new AsyncHttpRequest3().execute(
-                     "http://192.168.0.33:8080/softlock/Android/reserdelete"
+                     "http://192.168.0.38:8080/softlock/Android/reserdelete"
                         , "resv_idx=" + resv_idxstr
 
                 );
